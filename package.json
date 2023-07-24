@@ -1,0 +1,28 @@
+{
+    "name": "to-do-list",
+    "version": "1.0.0",
+    "description": "The classic to-do list application",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "webpack",
+        "start": "webpack serve --open"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hamzahuda/to-do-list.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/hamzahuda/to-do-list/issues"
+    },
+    "homepage": "https://github.com/hamzahuda/to-do-list#readme",
+    "devDependencies": {
+        "css-loader": "^6.8.1",
+        "style-loader": "^3.3.3",
+        "webpack": "^5.88.2",
+        "webpack-cli": "^5.1.4",
+        "webpack-dev-server": "^4.15.1"
+    }
+}
