@@ -1,1 +1,54 @@
+body {
+    display: grid;
+    grid-template: 60px / 300px 1fr;
+    height: 100vh;
+    color: white;
+    font-family: "Roboto", sans-serif;
+}
 
+.header {
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+    background-color: rgb(48, 48, 48);
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.121);
+}
+
+.sidebar {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    background-color: rgb(42, 42, 42);
+}
+
+.content {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    background-color: rgb(35, 35, 35);
+    padding: 40px 0px;
+    display: grid;
+    grid-template: 1fr / auto 1fr auto;
+}
+
+.content > div {
+    min-width: 70px;
+}
+
+.selected-project {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    max-width: 800px;
+    min-width: 400px;
+    justify-self: center;
+    width: 100%;
+}
+
+#projectTitle {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+
+hr {
+    background-color: rgb(75, 75, 75);
+    border: none;
+    height: 1px;
+}
