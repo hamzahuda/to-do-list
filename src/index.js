@@ -1,13 +1,11 @@
 import "./css/reset.css";
 import "./css/style.css";
 import {
-    deleteProject,
     createProject,
-    removeFromProject,
-    addToProject,
+    deleteProject,
+    addToDo,
+    removeToDo,
+    moveToDo,
     projects,
 } from "./modules/projects";
-
-createProject("Inbox");
-addToProject(0, { title: "My First To-Do" });
-console.log(projects);
+import todoFactory from "./modules/todos";

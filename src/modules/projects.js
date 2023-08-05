@@ -11,26 +11,17 @@ function deleteProject(i) {
     projects.splice(i, 1);
 }
 
-function addToProject(i, todo) {
+function addToDo(i, todo) {
     projects[i].todoList.push(todo);
 }
 
-function removeFromProject(projectIndex, todoIndex) {
+function removeToDo(projectIndex, todoIndex) {
     projects[projectIndex].todoList.splice(todoIndex, 1);
 }
 
 function moveToDo(fromProjectIndex, todoIndex, toProjectIndex) {
-    addToProject(
-        toProjectIndex,
-        projects[fromProjectIndex].todoList[todoIndex]
-    );
-    removeFromProject(fromIndex, todoIndex);
+    addToDo(toProjectIndex, projects[fromProjectIndex].todoList[todoIndex]);
+    removeToDo(fromProjectIndex, todoIndex);
 }
 
-export {
-    createProject,
-    deleteProject,
-    addToProject,
-    removeFromProject,
-    moveToDo,
-};
+export { createProject, deleteProject, addToDo, removeToDo, moveToDo };
