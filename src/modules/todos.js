@@ -1,4 +1,4 @@
-import { addToDo } from "./modules/projects";
+import { addToDo } from "./projects";
 
 export default function createToDo(
     project,
