@@ -1,9 +1,11 @@
-export default function todoFactory(
+import { addToDo } from "./modules/projects";
+
+export default function createToDo(
+    project,
     title,
     description,
     dueDate,
-    priority,
-    project
+    priority
 ) {
-    return { title, description, dueDate, priority };
+    addToDo(project, { title, description, dueDate, priority });
 }

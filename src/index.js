@@ -8,4 +8,4 @@ import {
     moveToDo,
     projects,
 } from "./modules/projects";
-import todoFactory from "./modules/todos";
+import createToDo from "./modules/todos";
