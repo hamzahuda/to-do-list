@@ -6,6 +6,8 @@ body {
     font-family: "Roboto", sans-serif;
 }
 
+/* Header Styling */
+
 .header {
     grid-row: 1 / 2;
     grid-column: 1 / -1;
@@ -14,11 +16,41 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.121);
 }
 
+/* Sidebar Styling */
+
 .sidebar {
     grid-row: 2 / 3;
     grid-column: 1 / 2;
     background-color: rgb(42, 42, 42);
 }
+
+.sidebar {
+    padding: 35px 25px;
+}
+
+#sidebarTitle {
+    color: rgb(171, 171, 171);
+    font-weight: 900;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.project {
+    list-style: disc;
+    list-style-position: inside;
+    height: 35px;
+    line-height: 35px;
+    padding-left: 15px;
+    border-radius: 5px;
+    transition: ease-in-out 0s;
+}
+
+.project:hover {
+    cursor: pointer;
+    background-color: rgb(64, 64, 64);
+}
+
+/* Main Content Styling */
 
 .content {
     grid-row: 2 / 3;
@@ -33,7 +65,7 @@ body {
     min-width: 70px;
 }
 
-.selected-project {
+.current-project {
     grid-row: 1 / 2;
     grid-column: 2 / 3;
     max-width: 800px;
