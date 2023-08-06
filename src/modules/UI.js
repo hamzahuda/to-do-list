@@ -13,6 +13,11 @@ export function loadProjectList() {
 
 export function loadToDoList(projectIndex) {
     if (projects[projectIndex] !== undefined) {
+        // Update title
+        document.getElementById("projectTitle").textContent =
+            projects[projectIndex].title;
+
+        // Load todos
         const todoList = document.getElementById("todoList");
         todoList.innerHTML = "";
         projects[projectIndex].todoList.forEach((todo) => {

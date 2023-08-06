@@ -42,7 +42,7 @@ body {
     line-height: 35px;
     padding-left: 15px;
     border-radius: 5px;
-    transition: ease-in-out 0s;
+    transition: ease-in-out 0.05s;
 }
 
 .project:hover {
@@ -83,4 +83,20 @@ hr {
     background-color: rgb(75, 75, 75);
     border: none;
     height: 1px;
+}
+
+.todo {
+}
+
+.todo {
+    height: 35px;
+    line-height: 35px;
+    padding-left: 15px;
+    border-radius: 5px;
+    transition: ease-in-out 0.05s;
+}
+
+.todo:hover {
+    cursor: pointer;
+    background-color: rgb(53, 53, 53);
 }
