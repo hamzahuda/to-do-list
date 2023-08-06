@@ -86,9 +86,10 @@ hr {
 }
 
 .todo {
-}
-
-.todo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
     height: 35px;
     line-height: 35px;
     padding-left: 15px;
@@ -99,4 +100,44 @@ hr {
 .todo:hover {
     cursor: pointer;
     background-color: rgb(53, 53, 53);
+}
+
+/* Checkbox Styling */
+
+.todo-checkbox {
+    position: relative;
+    appearance: none;
+    border: 1px solid #868686;
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    transition: ease-in-out 0.1s;
+}
+
+.todo-checkbox:hover {
+    cursor: pointer;
+    background-color: #3f3f3f;
+}
+
+.todo-checkbox:hover:after {
+    content: "\2714";
+    position: absolute;
+    top: 1px;
+    left: 4px;
+    color: #868686;
+}
+
+.regular-checkbox:checked {
+    background-color: #e9ecee;
+    border: 1px solid #adb8c0;
+    color: #99a1a7;
+}
+
+.todo-checkbox:checked:after {
+    content: "\2714";
+    position: absolute;
+    font-size: 0.9rem;
+    top: 1px;
+    left: 4px;
+    color: #cbcbcb;
 }
