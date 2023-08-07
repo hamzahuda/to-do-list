@@ -4,10 +4,10 @@ export function loadProjectList() {
     const projectList = document.getElementById("projectList");
     projectList.innerHTML = "";
     projects.forEach((project) => {
-        const node = document.createElement("li");
-        node.textContent = project.title;
-        node.classList.add("project");
-        projectList.appendChild(node);
+        const projectNode = document.createElement("li");
+        projectNode.textContent = project.title;
+        projectNode.classList.add("project");
+        projectList.appendChild(projectNode);
     });
 }
 
@@ -29,6 +29,10 @@ export function loadToDoList(projectIndex) {
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             checkbox.classList.add("todo-checkbox");
+            checkbox.checked = todo.completed ? true : false;
+            checkbox.addEventListener("click", () => {
+                todo.completed = !todo.completed;
+            });
 
             // Title child element
             const todoTitle = document.createElement("div");
