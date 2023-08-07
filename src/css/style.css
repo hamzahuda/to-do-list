@@ -111,7 +111,7 @@ hr {
     height: 20px;
     width: 20px;
     border-radius: 100%;
-    transition: ease-in-out 0.1s;
+    transition: ease-in-out 0.3s;
 }
 
 .todo-checkbox:hover {
