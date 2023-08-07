@@ -3,10 +3,13 @@ import { projects } from "./projects";
 export function loadProjectList() {
     const projectList = document.getElementById("projectList");
     projectList.innerHTML = "";
-    projects.forEach((project) => {
+    projects.forEach((project, projectIndex) => {
         const projectNode = document.createElement("li");
         projectNode.textContent = project.title;
         projectNode.classList.add("project");
+        projectNode.addEventListener("click", () => {
+            loadToDoList(projectIndex);
+        });
         projectList.appendChild(projectNode);
     });
 }
