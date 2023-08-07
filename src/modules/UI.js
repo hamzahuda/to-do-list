@@ -21,10 +21,24 @@ export function loadToDoList(projectIndex) {
         const todoList = document.getElementById("todoList");
         todoList.innerHTML = "";
         projects[projectIndex].todoList.forEach((todo) => {
-            const node = document.createElement("div");
-            node.textContent = todo.title;
-            node.classList.add("todo");
-            todoList.appendChild(node);
+            // Main element
+            const todoNode = document.createElement("div");
+            todoNode.classList.add("todo");
+
+            // Checkbox child element
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.classList.add("todo-checkbox");
+
+            // Title child element
+            const todoTitle = document.createElement("div");
+            todoTitle.classList.add("todo-title");
+            todoTitle.textContent = todo.title;
+
+            // Add to DOM
+            todoNode.appendChild(checkbox);
+            todoNode.appendChild(todoTitle);
+            todoList.appendChild(todoNode);
         });
     }
 }
