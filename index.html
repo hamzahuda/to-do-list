@@ -14,30 +14,30 @@
 <body>
     <div class="header"></div>
     <div class="sidebar">
-        <div id="sidebarTitle">Projects</div>
-        <ul id="projectList">
-            <li class="project">Placeholder 1</li>
-            <li class="project">Placeholder 2</li>
-            <li class="project">Placeholder 3</li>
-            <li class="project">Placeholder 4</li>
-            <li class="project">Placeholder 5</li>
-        </ul>
+        <div id="sidebarHeader">
+            <div id="sidebarTitle">Projects</div>
+            <button id="addProject">+</button>
+            <dialog id="projectModal">
+                <form>
+                    <p>
+                        <label for="newProjectTitle">Project Title</label>
+                        <input type="text" id="newProjectTitle">
+                    </p>
+                    <div>
+                        <button formmethod="dialog">Cancel</button>
+                        <button id="confirmBtn" value="projectTitle">Confirm</button>
+                    </div>
+                </form>
+            </dialog>
+        </div>
+        <ul id="projectList"></ul>
     </div>
     <div class="content">
         <div></div>
         <div class="current-project">
             <div id="projectTitle"></div>
             <hr>
-            <div id="todoList">
-                <div class="todo">
-                    <input type="checkbox" class="todo-checkbox">
-                    <div class="todo-title">placeholder 1</div>
-                </div>
-                <div class="todo">placeholder 2</div>
-                <div class="todo">placeholder 3</div>
-                <div class="todo">placeholder 4</div>
-                <div class="todo">placeholder 5</div>
-            </div>
+            <div id="todoList"></div>
         </div>
         <div></div>
     </div>
