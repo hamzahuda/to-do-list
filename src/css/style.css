@@ -28,11 +28,33 @@ body {
     padding: 35px 25px;
 }
 
+#sidebarHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
 #sidebarTitle {
     color: rgb(171, 171, 171);
     font-weight: 900;
-    margin-bottom: 15px;
     font-size: 1.1rem;
+}
+
+#addProject {
+    background-color: transparent;
+    border: none;
+    color: rgb(171, 171, 171);
+    font-size: 1.8rem;
+    height: 35px;
+    width: 35px;
+    border-radius: 10%;
+    transition: ease-in-out 0.1s;
+}
+
+#addProject:hover {
+    cursor: pointer;
+    background-color: rgb(64, 64, 64);
 }
 
 .project {
@@ -48,6 +70,64 @@ body {
 .project:hover {
     cursor: pointer;
     background-color: rgb(64, 64, 64);
+}
+
+/* Add Project Modal Styling */
+
+#projectModal::backdrop {
+    background-color: rgba(0, 0, 0, 0.331);
+}
+
+#projectModal {
+    color: white;
+    border: none;
+    background-color: rgb(42, 42, 42);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#projectModal > form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#projectModal > form > p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+#projectModal > form > p > label {
+    font-size: 18px;
+}
+
+#projectModal > form > p > input {
+    padding: 4px;
+    font-size: 20px;
+    width: 150px;
+}
+
+#projectModal > form > div {
+    display: flex;
+    flex-direction: row;
+    margin: 10px auto 0px auto;
+    gap: 15px;
+}
+
+#projectModal > form > div > button {
+    background-color: rgb(72, 72, 72);
+    font-size: 15px;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 10px;
+}
+
+#projectModal > form > div > button:hover {
+    cursor: pointer;
+    background-color: rgb(85, 85, 85);
 }
 
 /* Main Content Styling */
