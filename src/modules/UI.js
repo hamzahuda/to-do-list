@@ -1,9 +1,10 @@
 import { projects, createProject } from "./projects";
+import createToDo from "./todos";
 
 export function loadAddProjectButton() {
     const addProject = document.getElementById("addProject");
     const projectModal = document.getElementById("projectModal");
-    const confirmBtn = projectModal.querySelector("#confirmBtn");
+    const confirmProjectBtn = projectModal.querySelector("#confirmProjectBtn");
     const newProjectTitle = document.getElementById("newProjectTitle");
 
     addProject.addEventListener("click", () => {
@@ -12,7 +13,7 @@ export function loadAddProjectButton() {
 
     // Confirm button shouldn't submit but does reset form
     // Close button has formmethod="dialog", form data stays and modal closes
-    confirmBtn.addEventListener("click", (event) => {
+    confirmProjectBtn.addEventListener("click", (event) => {
         event.preventDefault();
         if (newProjectTitle.value !== "") {
             createProject(newProjectTitle.value);
@@ -21,6 +22,59 @@ export function loadAddProjectButton() {
             newProjectTitle.value = "";
         }
         projectModal.close();
+    });
+}
+
+export function loadAddTodoButton() {
+    const addTodo = document.getElementById("addTodo");
+    const todoModal = document.getElementById("todoModal");
+    const confirmTodoBtn = todoModal.querySelector("#confirmTodoBtn");
+    const title = document.getElementById("newTodoTitle");
+    const description = document.getElementById("newTodoDescription");
+    const dueDate = document.getElementById("newTodoDueDate");
+    const priority = document.getElementById("newTodoPriority");
+
+    addTodo.addEventListener("click", () => {
+        todoModal.showModal();
+    });
+
+    // Confirm button shouldn't submit but does reset form
+    // Close button has formmethod="dialog", form data stays and modal closes
+    confirmTodoBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        let validNewTodo = true;
+
+        if (title.value !== "") {
+            title.style.borderColor = "";
+        } else {
+            title.style.borderColor = "red";
+            validNewTodo = false;
+        }
+        if (priority.value <= 3 && priority.value > 0) {
+            priority.style.borderColor = "";
+        } else {
+            priority.style.borderColor = "red";
+            validNewTodo = false;
+        }
+
+        if (validNewTodo) {
+            const curProjectIndex =
+                document.getElementById("projectTitle").dataset.index;
+            createToDo(
+                curProjectIndex,
+                title.value,
+                description.value,
+                dueDate.value,
+                priority.value
+            );
+            loadToDoList(curProjectIndex);
+            title.value = "";
+            description.value = "";
+            dueDate.value = "";
+            priority.value = "";
+            todoModal.close();
+        }
     });
 }
 
@@ -41,8 +95,9 @@ export function loadProjectList() {
 export function loadToDoList(projectIndex) {
     if (projects[projectIndex] !== undefined) {
         // Update title
-        document.getElementById("projectTitle").textContent =
-            projects[projectIndex].title;
+        const projectTitle = document.getElementById("projectTitle");
+        projectTitle.textContent = projects[projectIndex].title;
+        projectTitle.dataset.index = projectIndex;
 
         // Load todos
         const todoList = document.getElementById("todoList");

@@ -25,7 +25,7 @@
                     </p>
                     <div>
                         <button formmethod="dialog">Cancel</button>
-                        <button id="confirmBtn" value="projectTitle">Confirm</button>
+                        <button id="confirmProjectBtn" value="projectTitle">Confirm</button>
                     </div>
                 </form>
             </dialog>
@@ -35,7 +35,34 @@
     <div class="content">
         <div></div>
         <div class="current-project">
-            <div id="projectTitle"></div>
+            <div id="contentHeader">
+                <div id="projectTitle"></div>
+                <button id="addTodo">+</button>
+                <dialog id="todoModal">
+                    <form>
+                        <p>
+                            <label for="newTodoTitle">*Title</label>
+                            <input type="text" id="newTodoTitle">
+                        </p>
+                        <p>
+                            <label for="newTodoDescription">Description</label>
+                            <input type="text" id="newTodoDescription">
+                        </p>
+                        <p>
+                            <label for="newTodoDueDate">Due Date</label>
+                            <input type="date" id="newTodoDueDate">
+                        </p>
+                        <p>
+                            <label for="newTodoPriority">*Priority (1-High, 2-Medium, 3-Low)</label>
+                            <input type="number" min="1" max="3" id="newTodoPriority">
+                        </p>
+                        <div>
+                            <button formmethod="dialog">Cancel</button>
+                            <button id="confirmTodoBtn" value="todoTitle">Confirm</button>
+                        </div>
+                    </form>
+                </dialog>
+            </div>
             <hr>
             <div id="todoList"></div>
         </div>
