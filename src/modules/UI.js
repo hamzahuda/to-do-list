@@ -8,7 +8,6 @@ export function loadAddProjectButton() {
 
     addProject.addEventListener("click", () => {
         projectModal.showModal();
-        // TODO: Darken background on modal opening
     });
 
     // Confirm button shouldn't submit but does reset form
