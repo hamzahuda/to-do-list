@@ -1,5 +1,7 @@
-import { projects, createProject } from "./projects";
+import { projects, createProject, removeToDo } from "./projects";
 import createToDo from "./todos";
+import { format } from "date-fns";
+import deleteIcon from "../images/delete.png";
 
 export function loadAddProjectButton() {
     const addProject = document.getElementById("addProject");
@@ -102,7 +104,7 @@ export function loadToDoList(projectIndex) {
         // Load todos
         const todoList = document.getElementById("todoList");
         todoList.innerHTML = "";
-        projects[projectIndex].todoList.forEach((todo) => {
+        projects[projectIndex].todoList.forEach((todo, todoIndex) => {
             // Main element
             const todoNode = document.createElement("div");
             todoNode.classList.add("todo");
@@ -115,16 +117,61 @@ export function loadToDoList(projectIndex) {
             checkbox.addEventListener("click", () => {
                 todo.completed = !todo.completed;
             });
+            todoNode.appendChild(checkbox);
+
+            // -----MAIN CONTENT-----
+
+            const todoMainContent = document.createElement("div");
+            todoMainContent.classList.add("todo-main-content");
 
             // Title child element
             const todoTitle = document.createElement("div");
             todoTitle.classList.add("todo-title");
             todoTitle.textContent = todo.title;
+            todoMainContent.appendChild(todoTitle);
+
+            // Description child element
+            if (todo.description) {
+                const desc = document.createElement("div");
+                desc.classList.add("todo-description");
+                desc.textContent = todo.description;
+                todoMainContent.appendChild(desc);
+            }
+
+            // Due Date child element
+
+            if (todo.dueDate) {
+                const dueDate = document.createElement("div");
+                dueDate.classList.add("due-date");
+                dueDate.textContent = format(new Date(todo.dueDate), "PP");
+                todoMainContent.appendChild(dueDate);
+            }
+
+            todoNode.appendChild(todoMainContent);
+
+            // -----MAIN CONTENT-----
+
+            // Priority child element
+            const priority = document.createElement("div");
+            priority.classList.add(`priority-${todo.priority}`);
+            todoNode.appendChild(priority);
+
+            // Delete button
+            const deleteButton = document.createElement("button");
+            deleteButton.classList.add("delete-button");
+            deleteButton.addEventListener("click", () => {
+                removeToDo(projectIndex, todoIndex);
+                loadToDoList(projectIndex);
+                console.log(projects[projectIndex].todoList);
+            });
+            const deleteImg = new Image();
+            deleteImg.src = deleteIcon;
+            deleteButton.appendChild(deleteImg);
+            todoNode.appendChild(deleteButton);
 
             // Add to DOM
-            todoNode.appendChild(checkbox);
-            todoNode.appendChild(todoTitle);
             todoList.appendChild(todoNode);
+            todoList.appendChild(document.createElement("hr"));
         });
     }
 }

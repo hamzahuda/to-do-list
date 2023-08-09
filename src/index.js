@@ -16,15 +16,13 @@ import {
 } from "./modules/UI";
 
 createProject("Inbox");
-createToDo(0, "First To-Do in the inbox");
-createToDo(0, "Second To-Do in the inbox");
-createToDo(0, "Third To-Do in the inbox");
-createToDo(0, "Fourth To-Do in the inbox");
-createProject("Next");
-createToDo(1, "fsdax");
-createToDo(1, "Second To-Dodfasfas in the inbox");
-createToDo(1, "Third To-Do fadsfin the inbox");
-createToDo(1, "Fourth To-Do fadin athe inbox");
+createToDo(
+    0,
+    "An Example To-Do!",
+    "This is an example of what a To-Do will look like, press the plus sign above to add your own To-Do, and press the delete icon on the right to remove this example.",
+    "2023-08-18",
+    1
+);
 
 window.addEventListener("DOMContentLoaded", () => {
     loadAddProjectButton();

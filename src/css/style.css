@@ -165,16 +165,74 @@ hr {
     flex-direction: row;
     align-items: center;
     gap: 8px;
-    height: 35px;
-    line-height: 35px;
     border-radius: 5px;
     transition: ease-in-out 0.05s;
+    padding: 5px 0px;
 }
 
 .todo:hover {
     cursor: pointer;
     background-color: rgb(53, 53, 53);
 }
+
+.todo-main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    margin-right: auto;
+}
+
+.todo-description {
+    color: gray;
+    font-size: 15px;
+    line-height: 16px;
+}
+
+.due-date {
+    color: rgb(152, 67, 198);
+    font-size: 15px;
+}
+
+.priority-1,
+.priority-2,
+.priority-3 {
+    min-height: 8px;
+    min-width: 8px;
+    border-radius: 100%;
+}
+
+.priority-1 {
+    background-color: #1eff00;
+}
+
+.priority-2 {
+    background-color: rgb(255, 166, 0);
+}
+
+.priority-3 {
+    background-color: rgb(255, 0, 0);
+}
+
+/* Delete Todo Styling */
+
+.delete-button {
+    background-color: transparent;
+    border: none;
+    transition: ease-in-out 0.1s;
+}
+
+.delete-button > img {
+    height: 25px;
+    width: 25px;
+}
+
+.delete-button:hover {
+    cursor: pointer;
+    transform: rotate(10deg);
+}
+
+/* Current Project Header Styling */
 
 #contentHeader {
     display: flex;
@@ -271,8 +329,8 @@ hr {
     position: relative;
     appearance: none;
     border: 1px solid #868686;
-    height: 20px;
-    width: 20px;
+    min-height: 20px;
+    min-width: 20px;
     border-radius: 100%;
     transition: ease-in-out 0.3s;
 }
