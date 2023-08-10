@@ -1,7 +1,10 @@
+"use strict";
+
 import { projects, createProject, removeToDo } from "./projects";
 import createToDo from "./todos";
 import { format } from "date-fns";
 import deleteIcon from "../images/delete.png";
+import editIcon from "../images/edit.png";
 
 export function loadAddProjectButton() {
     const addProject = document.getElementById("addProject");
@@ -53,7 +56,7 @@ export function loadAddTodoButton() {
             title.style.borderColor = "red";
             validNewTodo = false;
         }
-        if (priority.value <= 3 && priority.value > 0) {
+        if (priority.value <= 3 && priority.value >= 1) {
             priority.style.borderColor = "";
         } else {
             priority.style.borderColor = "red";
@@ -108,6 +111,7 @@ export function loadToDoList(projectIndex) {
             // Main element
             const todoNode = document.createElement("div");
             todoNode.classList.add("todo");
+            todoNode.dataset.index = todoIndex;
 
             // Checkbox child element
             const checkbox = document.createElement("input");
@@ -156,13 +160,87 @@ export function loadToDoList(projectIndex) {
             priority.classList.add(`priority-${todo.priority}`);
             todoNode.appendChild(priority);
 
+            // Edit button
+            const editButton = document.createElement("button");
+            editButton.classList.add("edit-button");
+            editButton.addEventListener("click", () => {
+                editButton.style.display = "none";
+                todoMainContent.style.display = "none";
+
+                const editMainContent = document.createElement("div");
+                editMainContent.classList.add("main-content");
+
+                // Edit Title element
+                const editTitle = document.createElement("input");
+                editTitle.type = "text";
+                editTitle.classList.add("edit-title");
+                editTitle.value = todo.title;
+                editMainContent.appendChild(editTitle);
+
+                // Edit Description element
+                const editDesc = document.createElement("input");
+                editDesc.type = "textarea";
+                editDesc.classList.add("edit-description");
+                editDesc.value = todo.description;
+                editMainContent.appendChild(editDesc);
+
+                // Edit Date element
+                const editDate = document.createElement("input");
+                editDate.type = "date";
+                editDate.classList.add("edit-date");
+                editDate.value = todo.dueDate;
+                editMainContent.appendChild(editDate);
+
+                // Edit Priority element
+                const editPriority = document.createElement("input");
+                editPriority.type = "number";
+                editPriority.max = 3;
+                editPriority.min = 1;
+                editPriority.classList.add("edit-priority");
+                editPriority.value = todo.priority;
+                editMainContent.appendChild(editPriority);
+
+                // Save and Cancel buttons
+                const saveBtn = document.createElement("button");
+                saveBtn.classList.add("save-button");
+                saveBtn.textContent = "Save";
+                saveBtn.addEventListener("click", () => {
+                    if (editTitle.value !== "") {
+                        todo.title = editTitle.value;
+                    }
+                    todo.description = editDesc.value
+                        ? editDesc.value
+                        : undefined;
+                    todo.dueDate = editDate.value ? editDate.value : undefined;
+                    if (editPriority.value <= 3 && editPriority.value >= 1) {
+                        todo.priority = editPriority.value;
+                    }
+
+                    loadToDoList(projectIndex);
+                });
+                editMainContent.appendChild(saveBtn);
+
+                const cancelBtn = document.createElement("button");
+                cancelBtn.classList.add("cancel-button");
+                cancelBtn.textContent = "Cancel";
+                cancelBtn.addEventListener("click", () => {
+                    loadToDoList(projectIndex);
+                });
+                editMainContent.appendChild(cancelBtn);
+
+                checkbox.after(editMainContent);
+            });
+            const editImg = new Image();
+            editImg.src = editIcon;
+            editButton.appendChild(editImg);
+            todoNode.appendChild(editButton);
+
             // Delete button
             const deleteButton = document.createElement("button");
             deleteButton.classList.add("delete-button");
             deleteButton.addEventListener("click", () => {
                 removeToDo(projectIndex, todoIndex);
                 loadToDoList(projectIndex);
-                console.log(projects[projectIndex].todoList);
             });
             const deleteImg = new Image();
             deleteImg.src = deleteIcon;
