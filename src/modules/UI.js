@@ -1,6 +1,6 @@
 "use strict";
 
-import { projects, createProject, removeToDo } from "./projects";
+import { projects, createProject, removeToDo, deleteProject } from "./projects";
 import createToDo from "./todos";
 import { format } from "date-fns";
 import deleteIcon from "../images/delete.png";
@@ -87,18 +87,41 @@ export function loadProjectList() {
     const projectList = document.getElementById("projectList");
     projectList.innerHTML = "";
     projects.forEach((project, projectIndex) => {
+        // Main project Node
         const projectNode = document.createElement("li");
-        projectNode.textContent = project.title;
         projectNode.classList.add("project");
         projectNode.addEventListener("click", () => {
             loadToDoList(projectIndex);
         });
+
+        // Project Title
+        const projectTitle = document.createElement("div");
+        projectTitle.classList.add("project-title");
+        projectTitle.textContent = project.title;
+
+        // Delete button
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete-project-button");
+        deleteButton.addEventListener("click", (e) => {
+            deleteProject(projectIndex);
+            loadProjectList();
+            loadToDoList(0);
+            e.stopPropagation();
+        });
+        const deleteImg = new Image();
+        deleteImg.src = deleteIcon;
+        deleteButton.appendChild(deleteImg);
+
+        projectNode.appendChild(projectTitle);
+        projectNode.appendChild(deleteButton);
         projectList.appendChild(projectNode);
     });
 }
 
 export function loadToDoList(projectIndex) {
     if (projects[projectIndex] !== undefined) {
+        document.querySelector(".current-project").style.display = "";
+        document.querySelector(".no-projects").style.display = "none";
         // Update title
         const projectTitle = document.getElementById("projectTitle");
         projectTitle.textContent = projects[projectIndex].title;
@@ -186,7 +209,9 @@ export function loadToDoList(projectIndex) {
                 // Edit Description element
                 const editDesc = document.createElement("textarea");
                 editDesc.classList.add("edit-description");
-                editDesc.value = todo.description;
+                if (todo.description) {
+                    editDesc.value = todo.description;
+                }
                 function setHeight() {
                     editDesc.style.height = "0px";
                     editDesc.style.height = editDesc.scrollHeight + "px";
@@ -252,7 +277,7 @@ export function loadToDoList(projectIndex) {
 
             // Delete button
             const deleteButton = document.createElement("button");
-            deleteButton.classList.add("delete-button");
+            deleteButton.classList.add("delete-todo-button");
             deleteButton.addEventListener("click", deleteBtnClicked);
             function deleteBtnClicked() {
                 removeToDo(projectIndex, todoIndex);
@@ -267,5 +292,8 @@ export function loadToDoList(projectIndex) {
             todoList.appendChild(todoNode);
             todoList.appendChild(document.createElement("hr"));
         });
+    } else {
+        document.querySelector(".current-project").style.display = "none";
+        document.querySelector(".no-projects").style.display = "";
     }
 }
