@@ -6,6 +6,10 @@ body {
     font-family: "Roboto", sans-serif;
 }
 
+input {
+    color-scheme: dark;
+}
+
 /* Header Styling */
 
 .header {
@@ -169,11 +173,6 @@ hr {
     padding: 5px 0px;
 }
 
-.todo:hover {
-    cursor: pointer;
-    background-color: rgb(53, 53, 53);
-}
-
 .todo-main-content {
     display: flex;
     flex-direction: column;
@@ -217,10 +216,101 @@ hr {
 
 /* Edit Todo Styling */
 
+.edit-main-content {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    padding: 10px 10px;
+    margin-right: auto;
+    border: 1px solid rgb(75, 75, 75);
+    border-radius: 10px;
+}
+
+.edit-title,
+.edit-description,
+.edit-date,
+.edit-priority {
+    background-color: transparent;
+    border: none;
+}
+
+.edit-title:focus,
+.edit-description:focus,
+.edit-date:focus,
+.edit-priority:focus {
+    outline: none;
+}
+
+.edit-title {
+    color: white;
+    font-size: 16px;
+}
+
+.edit-description {
+    color: gray;
+    font-size: 15px;
+    font-family: "Roboto", sans-serif;
+    overflow-y: hidden;
+    min-height: 20px;
+}
+
+.edit-date {
+    cursor: pointer;
+    color: rgb(152, 67, 198);
+    font-size: 15px;
+    width: fit-content;
+}
+
+.edit-priority {
+    width: fit-content;
+    color: white;
+}
+
+.edit-buttons {
+    display: flex;
+    margin-left: auto;
+    gap: 10px;
+}
+
+.save-button,
+.cancel-button {
+    font-size: 15px;
+    width: 70px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 12px;
+    color: white;
+}
+
+.save-button {
+    background-color: rgb(200, 61, 61);
+}
+
+.cancel-button {
+    background-color: rgb(50, 50, 50);
+}
+
+.save-button:hover {
+    background-color: rgb(235, 32, 32);
+}
+
+.cancel-button:hover {
+    background-color: rgb(65, 65, 65);
+}
+
+.save-button:hover,
+.cancel-button:hover {
+    cursor: pointer;
+}
+
 .edit-button {
     background-color: transparent;
     border: none;
-    transition: ease-in-out 0.1s;
+    transition: ease-in-out 0.2s;
 }
 
 .edit-button > img {
@@ -238,7 +328,7 @@ hr {
 .delete-button {
     background-color: transparent;
     border: none;
-    transition: ease-in-out 0.1s;
+    transition: ease-in-out 0.2s;
 }
 
 .delete-button > img {

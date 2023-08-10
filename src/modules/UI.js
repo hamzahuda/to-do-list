@@ -163,12 +163,18 @@ export function loadToDoList(projectIndex) {
             // Edit button
             const editButton = document.createElement("button");
             editButton.classList.add("edit-button");
-            editButton.addEventListener("click", () => {
-                editButton.style.display = "none";
+
+            editButton.addEventListener("click", editBtnClicked);
+            function editBtnClicked() {
+                // Disable buttons and hide todo content
+                checkbox.style.display = "none";
+                deleteButton.removeEventListener("click", deleteBtnClicked);
+                editButton.removeEventListener("click", editBtnClicked);
+                editButton.style.transform = "scale(1.4)";
                 todoMainContent.style.display = "none";
 
                 const editMainContent = document.createElement("div");
-                editMainContent.classList.add("main-content");
+                editMainContent.classList.add("edit-main-content");
 
                 // Edit Title element
                 const editTitle = document.createElement("input");
@@ -178,10 +184,15 @@ export function loadToDoList(projectIndex) {
                 editMainContent.appendChild(editTitle);
 
                 // Edit Description element
-                const editDesc = document.createElement("input");
-                editDesc.type = "textarea";
+                const editDesc = document.createElement("textarea");
                 editDesc.classList.add("edit-description");
                 editDesc.value = todo.description;
+                function setHeight() {
+                    editDesc.style.height = "0px";
+                    editDesc.style.height = editDesc.scrollHeight + "px";
+                }
+                editDesc.addEventListener("input", setHeight);
+                editDesc.addEventListener("click", setHeight);
                 editMainContent.appendChild(editDesc);
 
                 // Edit Date element
@@ -201,6 +212,13 @@ export function loadToDoList(projectIndex) {
                 editMainContent.appendChild(editPriority);
 
                 // Save and Cancel buttons
+                const cancelBtn = document.createElement("button");
+                cancelBtn.classList.add("cancel-button");
+                cancelBtn.textContent = "Cancel";
+                cancelBtn.addEventListener("click", () => {
+                    loadToDoList(projectIndex);
+                });
+
                 const saveBtn = document.createElement("button");
                 saveBtn.classList.add("save-button");
                 saveBtn.textContent = "Save";
@@ -215,21 +233,18 @@ export function loadToDoList(projectIndex) {
                     if (editPriority.value <= 3 && editPriority.value >= 1) {
                         todo.priority = editPriority.value;
                     }
-
                     loadToDoList(projectIndex);
                 });
-                editMainContent.appendChild(saveBtn);
 
-                const cancelBtn = document.createElement("button");
-                cancelBtn.classList.add("cancel-button");
-                cancelBtn.textContent = "Cancel";
-                cancelBtn.addEventListener("click", () => {
-                    loadToDoList(projectIndex);
-                });
-                editMainContent.appendChild(cancelBtn);
+                const buttons = document.createElement("div");
+                buttons.classList.add("edit-buttons");
+                buttons.appendChild(cancelBtn);
+                buttons.appendChild(saveBtn);
+                editMainContent.appendChild(buttons);
 
                 checkbox.after(editMainContent);
-            });
+            }
+
             const editImg = new Image();
             editImg.src = editIcon;
             editButton.appendChild(editImg);
@@ -238,10 +253,11 @@ export function loadToDoList(projectIndex) {
             // Delete button
             const deleteButton = document.createElement("button");
             deleteButton.classList.add("delete-button");
-            deleteButton.addEventListener("click", () => {
+            deleteButton.addEventListener("click", deleteBtnClicked);
+            function deleteBtnClicked() {
                 removeToDo(projectIndex, todoIndex);
                 loadToDoList(projectIndex);
-            });
+            }
             const deleteImg = new Image();
             deleteImg.src = deleteIcon;
             deleteButton.appendChild(deleteImg);
