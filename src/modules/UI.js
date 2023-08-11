@@ -1,5 +1,3 @@
-"use strict";
-
 import { projects, createProject, removeToDo, deleteProject } from "./projects";
 import createToDo from "./todos";
 import { format } from "date-fns";
